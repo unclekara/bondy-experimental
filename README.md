@@ -1,3 +1,6 @@
+<p align="center">
+  <img src="docs/bondy-cover.png" width="800">
+</p>
 # Bondy – Experimental Custom Transport for SRT Workflows
 
 > **Hobby / experimental engineering project**  
