@@ -1,5 +1,5 @@
 <p align="center">
-  <img src="docs/bondy-cover.png" width="560">
+  <img src="docs/bondy-cover-v2.png" width="560">
 </p>
 # Bondy – Experimental Custom Transport for SRT Workflows
 
