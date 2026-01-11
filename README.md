@@ -1,6 +1,3 @@
-<p align="center">
-  <img src="docs/bondy-cover-v3.jpg" width="560">
-</p>
 # Bondy – Experimental Custom Transport for SRT Workflows
 
 > **Hobby / experimental engineering project**  
@@ -13,7 +10,7 @@ Bonding is performed by a custom transport layer, while SRT is used only at the 
 
 ## About this project
 
-It is not a commercial product and is not intended to replace professional bonding solutions. It uses a custom transport layer for bonding, while SRT is used only at the input and output edges.
+It is not a commercial product and is not intended to replace professional bonding solutions.
 
 Most of the implementation was developed with the assistance of **AI-based tools**.  
 Architecture, design decisions, testing, and integration were performed manually.
@@ -22,26 +19,7 @@ Architecture, design decisions, testing, and integration were performed manually
 
 ## Technical details
 
-Bondy operates as an external transport layer placed between
-the input and output SRT streams.
-
-On the TX side, the incoming SRT stream is received and split
-into small transport packets. These packets are distributed
-across multiple available uplink interfaces (such as USB modems
-or USB Ethernet adapters).
-
-Each packet carries minimal sequencing information, allowing
-the RX side to reassemble the original stream even if packets
-arrive out of order, with varying latency, or with partial loss
-on individual links.
-
-On the RX side, packets from all links are collected, reordered,
-and reconstructed into a continuous stream, which is then
-exposed again as a standard SRT output.
-
-The bonding logic is implemented entirely within the custom
-transport layer. SRT itself is used only at the input and output
-edges and is not modified.
+Bondy uses a custom, project-specific transport protocol optimized for multi-link aggregation. Protocol details are not publicly available at this stage.
 
 ---
 
@@ -95,7 +73,7 @@ edges and is not modified.
    **Port:** `8018` (typically `http://localhost:8018`; ensure the port is not blocked by a local firewall).
 
 ### License and activation
-The Windows RX application requires a license key to start.
+The Windows RX application uses a license key to start.
 - A **free 60‑day trial** is provided.
 - The license is **bound to the local hardware ID**.
 - Activation performs a **one‑time HTTPS request** to:  
@@ -115,6 +93,12 @@ After activation, the application does **not** perform background network commun
 
 This project is an **experimental, hobby‑level engineering project**. It is not intended for production use and does not provide security guarantees.
 
+### VirusTotal and false positives
+- BondyRX.WebUI.exe: https://www.virustotal.com/gui/file/69a67bb553a417f3b1f7d48f2f24fe81a271ef9898b9c326d0a21a7aafa4e8c8/detection  
+- Bondy Console.exe: https://www.virustotal.com/gui/file/2c3631ba352b69c175ca65297b7f734d00d01a26dbf0c4d61c660ddc118d9123/detection  
+  
+A small number of heuristic antivirus engines may flag the Windows RX binary as suspicious. This appears to be a false positive (common for unsigned, self-built tools with embedded networking and crypto). If you’re unsure, inspect behavior with packet/network analyzers (e.g., Wireshark) or run in a controlled environment. You can also review SHA256 hashes and check the VirusTotal reports above.
+
 ### Network behavior
 Bondy TX and RX do not include telemetry, tracking, or automatic update mechanisms. All network activity is limited to user‑configured SRT/UDP communication.
 
@@ -132,8 +116,7 @@ That’s a fair question. The RX side is protected mainly to limit uncontrolled 
 
 The activation is intentionally simple: a one‑time HTTPS request, no telemetry, no background checks, and a fairly long 60‑day trial.
 
-This may change in the future as the project evolves, but for now it’s just a lightweight safeguard rather than a commercial DRM system. If licensing is a blocker for someone testing, I’m happy to discuss options.
-
+This may change in the future as the project evolves, but for now it’s just a lightweight safeguard rather than a commercial DRM system.
 ---
 
 ## Notes
