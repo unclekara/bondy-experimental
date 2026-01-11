@@ -22,7 +22,26 @@ Architecture, design decisions, testing, and integration were performed manually
 
 ## Technical details
 
-Bondy uses a custom, project-specific transport protocol optimized for multi-link aggregation. Protocol details are not publicly available at this time.
+Bondy operates as an external transport layer placed between
+the input and output SRT streams.
+
+On the TX side, the incoming SRT stream is received and split
+into small transport packets. These packets are distributed
+across multiple available uplink interfaces (such as USB modems
+or USB Ethernet adapters).
+
+Each packet carries minimal sequencing information, allowing
+the RX side to reassemble the original stream even if packets
+arrive out of order, with varying latency, or with partial loss
+on individual links.
+
+On the RX side, packets from all links are collected, reordered,
+and reconstructed into a continuous stream, which is then
+exposed again as a standard SRT output.
+
+The bonding logic is implemented entirely within the custom
+transport layer. SRT itself is used only at the input and output
+edges and is not modified.
 
 ---
 
