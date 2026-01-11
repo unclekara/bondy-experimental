@@ -24,6 +24,8 @@ Architecture, design decisions, testing, and integration were performed manually
 
 Bondy uses a custom, project-specific transport protocol optimized for multi-link aggregation. Protocol details are not publicly available at this stage.
 
+For a high-level transport overview, see [ARCHITECTURE_OVERVIEW.md](ARCHITECTURE_OVERVIEW.md).
+
 ---
 
 ## Bondy TX (Raspberry Pi based transmitter)
